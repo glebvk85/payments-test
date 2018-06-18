@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model IEnumerable<SiteMonitoring.Models.CheckStatusInfo>
+@foreach (var site in Model)
+{
+    <br>
+    @site.Url @site.IsAvailable
+}
