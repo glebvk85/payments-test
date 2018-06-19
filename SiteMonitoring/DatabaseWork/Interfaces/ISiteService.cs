@@ -5,6 +5,6 @@ namespace DatabaseWork.Interfaces
 {
     public interface ISiteService
     {
-        IList<Site> GetAllSites();
+        IEnumerable<Site> GetAllSites();
     }
 }

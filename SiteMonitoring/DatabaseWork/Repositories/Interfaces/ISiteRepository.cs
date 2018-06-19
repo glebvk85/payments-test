@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseWork.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DatabaseWork.Repositories.Interfaces
 {
-    interface ISiteRepository
+    public interface ISiteRepository
     {
+        IEnumerable<Site> GetAll();
     }
 }

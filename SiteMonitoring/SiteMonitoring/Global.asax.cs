@@ -7,6 +7,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Monitoring;
 using DatabaseWork;
+using DatabaseWork.Repositories.Interfaces;
+using DatabaseWork.Repositories;
 
 namespace SiteMonitoring
 {
@@ -19,7 +21,9 @@ namespace SiteMonitoring
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var service = new SiteService();
+            string pathFile = HttpContext.Current.Server.MapPath("~/App_Data/sites.csv");
+            var siteRepository = new SiteRepository(pathFile);
+            var service = new SiteService(siteRepository);
             var sites = service.GetAllSites();
             SiteMonitor.Init(sites.ToArray());
             SiteMonitor.Start();

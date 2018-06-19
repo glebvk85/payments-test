@@ -2,18 +2,22 @@
 using System;
 using System.Collections.Generic;
 using DatabaseWork.Entities;
+using DatabaseWork.Repositories.Interfaces;
 
 namespace DatabaseWork
 {
     public class SiteService : ISiteService
     {
-        public IList<Site> GetAllSites()
+        private readonly ISiteRepository siteRepository;
+
+        public SiteService(ISiteRepository siteRepository)
         {
-            return new List<Site>{ new Site()
-            { Url = "https://google.com", CheckPeriodInSeconds = 5 },
-          // new Site() { Url = "http://google.com/22", CheckPeriodInSeconds = 2 },
-         //  new Site() { Url = "http://google.com/333", CheckPeriodInSeconds = 3 },
-            };
+            this.siteRepository = siteRepository;
+        }
+
+        public IEnumerable<Site> GetAllSites()
+        {
+            return siteRepository.GetAll();
         }
     }
 }
