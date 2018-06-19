@@ -9,6 +9,7 @@ using Monitoring;
 using DatabaseWork;
 using DatabaseWork.Repositories.Interfaces;
 using DatabaseWork.Repositories;
+using System.Net;
 
 namespace SiteMonitoring
 {
@@ -20,6 +21,11 @@ namespace SiteMonitoring
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager
+                .ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
 
             string pathFile = HttpContext.Current.Server.MapPath("~/App_Data/sites.csv");
             var siteRepository = new SiteRepository(pathFile);
