@@ -3,8 +3,18 @@
 }
 
 @model IEnumerable<SiteMonitoring.Models.CheckStatusInfo>
-@foreach (var site in Model)
-{
-    <br>
-    @site.Url @site.IsAvailable
-}
+<div>
+    <table class="table">
+        <tr>
+            <th>Site</th>
+            <th>Is available</th>
+        </tr>
+        @foreach (var site in Model)
+        {
+            <tr>
+                <td>@site.Url</td>
+                <td>@site.IsAvailable</td>
+            </tr>
+        }
+    </table>
+</div>
