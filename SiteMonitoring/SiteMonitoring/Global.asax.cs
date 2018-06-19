@@ -31,7 +31,9 @@ namespace SiteMonitoring
             var siteRepository = new SiteRepository(pathFile);
             var service = new SiteService(siteRepository);
             var sites = service.GetAllSites();
-            SiteMonitor.Init(sites.ToArray());
+            var siteChecker = new SiteChecker();
+
+            SiteMonitor.Init(siteChecker, sites.ToArray());
             SiteMonitor.Start();
         }
     }

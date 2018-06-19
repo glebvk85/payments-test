@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Monitoring
 {
-    class SiteChecker
+    public class SiteChecker : ISiteChecker
     {
         public void CheckAsync(string url, Action<bool> callback)
         {

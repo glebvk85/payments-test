@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SiteMonitoring;
 using SiteMonitoring.Controllers;
+using Monitoring;
+using Moq;
+using DatabaseWork.Entities;
 
 namespace SiteMonitoring.Tests.Controllers
 {
@@ -15,7 +18,8 @@ namespace SiteMonitoring.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
+            SiteMonitor.Init(Mock.Of<ISiteChecker>(), new Site());
 
             ViewResult result = controller.Index() as ViewResult;
 

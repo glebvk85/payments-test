@@ -14,7 +14,6 @@ namespace SiteMonitoring.Controllers
         public ActionResult Index()
         {
             var sites = SiteMonitor.GetSiteStatuses().ToList();
-            Response.AddHeader("Refresh", "5");
             return View(sites.Select(e => new CheckStatusInfo() { Url = e.Site.Url, IsAvailable = e.IsAvailable }));
         }
     }

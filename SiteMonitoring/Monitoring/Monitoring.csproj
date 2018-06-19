@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISiteChecker.cs" />
     <Compile Include="SiteChecker.cs" />
     <Compile Include="SiteInfo.cs" />
     <Compile Include="SiteMonitor.cs" />

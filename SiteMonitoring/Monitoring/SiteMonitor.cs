@@ -9,20 +9,21 @@ namespace Monitoring
     public class SiteMonitor
     {
         private static SiteInfo[] sites;
+        private static ISiteChecker siteChecker;
 
         public static IEnumerable<SiteInfo> GetSiteStatuses()
         {
             return sites;
         }
 
-        public static void Init(params Site[] sites)
+        public static void Init(ISiteChecker siteChecker, params Site[] sites)
         {
             SiteMonitor.sites = sites.Select(e => new SiteInfo(e)).ToArray();
+            SiteMonitor.siteChecker = siteChecker;
         }
 
         public static void Start()
         {
-            var checker = new SiteChecker();
             var thread = new Thread((state) =>
             {
                 long leftSeconds = 0;
@@ -33,7 +34,7 @@ namespace Monitoring
                     leftSeconds += minPeriod;
                     foreach (var site in sites.Where(e => leftSeconds % e.Site.CheckPeriodInSeconds == 0))
                     {
-                        checker.CheckAsync(site.Site.Url, (status) => { site.IsAvailable = status; });
+                        siteChecker.CheckAsync(site.Site.Url, (status) => { site.IsAvailable = status; });
                     }
                 }
             });
