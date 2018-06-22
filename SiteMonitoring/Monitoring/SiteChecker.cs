@@ -12,14 +12,14 @@ namespace Monitoring
             {
                 try
                 {
-                    var request = WebRequest.Create(url);
+                    var request = WebRequest.Create(new Uri(url));
                     using (var response = (HttpWebResponse)request.GetResponse())
                     {
                         callback(response != null && response.StatusCode == HttpStatusCode.OK);
                     }
                 }
                 catch
-                (WebException)
+                (Exception)
                 {
                     callback(false);
                 }

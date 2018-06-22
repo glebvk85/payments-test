@@ -10,6 +10,7 @@ namespace Monitoring
     {
         private static SiteInfo[] sites;
         private static ISiteChecker siteChecker;
+        private static Thread checkThread;
 
         public static IEnumerable<SiteInfo> GetSiteStatuses()
         {
@@ -24,7 +25,7 @@ namespace Monitoring
 
         public static void Start()
         {
-            var thread = new Thread((state) =>
+            checkThread = new Thread((state) =>
             {
                 long leftSeconds = 0;
                 while (true)
@@ -38,7 +39,12 @@ namespace Monitoring
                     }
                 }
             });
-            thread.Start();
+            checkThread.Start();
+        }
+
+        public static void Stop()
+        {
+            checkThread.Abort();
         }
     }
 }

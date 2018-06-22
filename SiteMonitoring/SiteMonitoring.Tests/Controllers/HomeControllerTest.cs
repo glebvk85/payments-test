@@ -16,7 +16,7 @@ namespace SiteMonitoring.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void IndexTest()
         {
             var controller = new HomeController();
             SiteMonitor.Init(Mock.Of<ISiteChecker>(), new Site());

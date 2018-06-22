@@ -93,6 +93,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\SiteCheckerFake.cs" />
+    <Compile Include="Integration\SiteCheckerTest.cs" />
+    <Compile Include="Integration\SiteMonitorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
